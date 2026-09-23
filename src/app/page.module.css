@@ -1,150 +1,139 @@
 .page {
-  --background: #fafafa;
-  --foreground: #fff;
-
-  --text-primary: #000;
-  --text-secondary: #666;
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-  --button-secondary-border: #ebebeb;
-
   display: flex;
-  flex: 1;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-geist-sans);
-  background-color: var(--background);
+  gap: 18px;
 }
 
-.main {
+.header {
   display: flex;
-  flex: 1;
-  width: 100%;
-  max-width: 800px;
-  flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-end;
   justify-content: space-between;
-  background-color: var(--foreground);
-  padding: 120px 60px;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
-.intro {
+.date {
+  font-size: 0.8rem;
+  font-weight: 620;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.greeting {
+  font-size: 1.75rem;
+  letter-spacing: -0.03em;
+  margin-top: 4px;
+}
+
+.subline {
+  font-size: 0.9rem;
+  color: var(--text-2);
+  margin-top: 4px;
+}
+
+.logButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 20px;
+  border-radius: var(--radius-pill);
+  background: var(--brand);
+  color: var(--text-inverse);
+  font-weight: 600;
+  font-size: 0.92rem;
+  box-shadow: var(--shadow-1);
+  transition: background var(--duration) var(--ease), transform var(--duration) var(--ease);
+}
+
+.logButton:hover {
+  background: var(--brand-hover);
+}
+
+.logButton:active {
+  transform: translateY(1px);
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.sectionHeading {
+  font-size: 0.82rem;
+  font-weight: 680;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.sectionNote {
+  font-size: 0.78rem;
+  color: var(--text-3);
+}
+
+.extras {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.extraCard {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.extraIcon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background: var(--surface-muted);
+  color: var(--text-2);
+  flex: none;
+}
+
+.extraText {
   display: flex;
   flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.extraValue {
+  font-size: 1.05rem;
+  font-weight: 640;
+}
+
+.extraLabel {
+  font-size: 0.78rem;
+  color: var(--text-3);
+}
+
+.footnote {
+  display: flex;
   align-items: flex-start;
-  text-align: left;
-  gap: 24px;
-}
-
-.intro h1 {
-  max-width: 320px;
-  font-size: 40px;
-  font-weight: 600;
-  line-height: 48px;
-  letter-spacing: -2.4px;
-  text-wrap: balance;
-  color: var(--text-primary);
-}
-
-.intro p {
-  max-width: 440px;
-  font-size: 18px;
-  line-height: 32px;
-  text-wrap: balance;
-  color: var(--text-secondary);
-}
-
-.intro a {
-  font-weight: 500;
-  color: var(--text-primary);
-}
-
-.ctas {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  max-width: 440px;
-  gap: 16px;
-  font-size: 14px;
-}
-
-.ctas a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 40px;
-  padding: 0 16px;
-  border-radius: 128px;
-  border: 1px solid transparent;
-  transition: 0.2s;
-  cursor: pointer;
-  width: fit-content;
-  font-weight: 500;
-}
-
-a.primary {
-  background: var(--text-primary);
-  color: var(--background);
   gap: 8px;
+  font-size: 0.78rem;
+  color: var(--text-3);
+  padding: 2px 4px 8px;
 }
 
-a.secondary {
-  border-color: var(--button-secondary-border);
-}
-
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
+@media (max-width: 640px) {
+  .greeting {
+    font-size: 1.45rem;
   }
-
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
+  .extras {
+    grid-template-columns: 1fr;
   }
-}
-
-@media (max-width: 600px) {
-  .main {
-    padding: 48px 24px;
+  .logButton {
+    width: 100%;
+    justify-content: center;
   }
-
-  .intro {
-    gap: 16px;
-  }
-
-  .intro h1 {
-    font-size: 32px;
-    line-height: 40px;
-    letter-spacing: -1.92px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
-  }
-
-  .page {
-    --background: #000;
-    --foreground: #000;
-
-    --text-primary: #ededed;
-    --text-secondary: #999;
-
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-    --button-secondary-border: #1a1a1a;
-  }
-}
-
-.code {
-  font-family: var(--font-geist-mono);
-  font-size: 0.9em;
-  background: color-mix(in srgb, currentColor 8%, transparent);
-  padding: 0.1em 0.4em;
-  border-radius: 6px;
 }

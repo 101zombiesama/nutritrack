@@ -1,0 +1,92 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.name {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.86rem;
+  font-weight: 620;
+  color: var(--text-2);
+}
+
+.swatch {
+  width: 9px;
+  height: 9px;
+  border-radius: 3px;
+  background: var(--macro-color);
+}
+
+.percent {
+  font-size: 0.82rem;
+  font-weight: 640;
+  color: var(--text-3);
+}
+
+.percentOver {
+  color: var(--over);
+}
+
+.values {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.current {
+  font-size: 1.55rem;
+  font-weight: 670;
+  letter-spacing: -0.028em;
+  line-height: 1;
+}
+
+.goal {
+  font-size: 0.9rem;
+  color: var(--text-3);
+  font-weight: 540;
+}
+
+.status {
+  font-size: 0.8rem;
+  color: var(--text-2);
+}
+
+.statusOver {
+  color: var(--over);
+}
+
+.statusNear {
+  color: var(--warning);
+}
+
+.statusMet {
+  color: var(--positive);
+}
+
+@media (max-width: 760px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .card {
+    gap: 10px;
+  }
+  .values {
+    margin-top: -2px;
+  }
+}

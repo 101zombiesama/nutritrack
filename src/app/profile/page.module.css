@@ -1,0 +1,41 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--brand-soft);
+  color: var(--brand);
+  font-size: 1.25rem;
+  font-weight: 680;
+  flex: none;
+}
+
+.title {
+  font-size: 1.6rem;
+  letter-spacing: -0.03em;
+}
+
+.subtitle {
+  font-size: 0.88rem;
+  color: var(--text-2);
+  margin-top: 2px;
+}
+
+@media (max-width: 640px) {
+  .title {
+    font-size: 1.35rem;
+  }
+}

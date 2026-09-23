@@ -1,0 +1,178 @@
+.groups {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.groupHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 2px;
+}
+
+.groupName {
+  font-size: 0.82rem;
+  font-weight: 680;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.groupTotal {
+  font-size: 0.8rem;
+  color: var(--text-3);
+}
+
+.meal {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  transition: border-color var(--duration) var(--ease), box-shadow var(--duration) var(--ease);
+}
+
+.meal:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-1);
+}
+
+.mealTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.mealTitle {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.mealName {
+  font-size: 0.95rem;
+  font-weight: 620;
+  letter-spacing: -0.01em;
+}
+
+.mealMeta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: var(--text-3);
+  flex-wrap: wrap;
+}
+
+.calories {
+  font-size: 1.02rem;
+  font-weight: 660;
+  white-space: nowrap;
+}
+
+.caloriesUnit {
+  font-size: 0.75rem;
+  color: var(--text-3);
+  font-weight: 540;
+  margin-left: 3px;
+}
+
+.macros {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.macro {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: var(--text-2);
+}
+
+.macroDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background: var(--macro-color);
+}
+
+.items {
+  font-size: 0.78rem;
+  color: var(--text-3);
+  line-height: 1.45;
+}
+
+.actions {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.iconButton {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  color: var(--text-3);
+  transition: background var(--duration) var(--ease), color var(--duration) var(--ease);
+}
+
+.iconButton:hover {
+  background: var(--surface-hover);
+  color: var(--text);
+}
+
+.deleteButton:hover {
+  background: var(--over-soft);
+  color: var(--over);
+}
+
+.addRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 14px;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-md);
+  color: var(--text-3);
+  font-size: 0.85rem;
+  font-weight: 540;
+  width: 100%;
+  transition: color var(--duration) var(--ease), border-color var(--duration) var(--ease),
+    background var(--duration) var(--ease);
+}
+
+.addRow:hover {
+  color: var(--brand);
+  border-color: var(--brand);
+  background: var(--brand-soft);
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 520px) {
+  .macros {
+    gap: 10px;
+  }
+}

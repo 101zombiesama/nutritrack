@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NutriTrack
 
-## Getting Started
-
-First, run the development server:
+A nutrition tracking frontend built with Next.js (App Router), React and plain CSS
+Modules. Everything runs in the browser: there is no backend, and all data lives in
+`localStorage`, so the whole app can be used end to end as-is.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run dev     # http://localhost:3000
+npm run build   # production build
+npm run lint    # eslint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## The core loop
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Describe a meal in your own words → the nutrition service estimates it → you confirm
+or correct it → it is logged, and every calorie/macro figure in the app updates.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Screens
 
-## Learn More
+| Route | What it does |
+| --- | --- |
+| `/` | Today: calorie ring (consumed / goal / remaining), protein-carbs-fat cards, today's meals grouped by slot, inline edit and delete |
+| `/log` | AI food log: chat interface, suggested prompts, analysing state, confirmation card with **Add to today / Edit / Try again** |
+| `/trends` | 7 / 30 / 90 day charts per nutrient with the goal drawn in, period averages, macro split, body weight vs goal |
+| `/profile` | Personal details, nutrition goals (target vs daily maximum), suggested goals, weigh-ins, theme and preferences |
 
-To learn more about Next.js, take a look at the following resources:
+## How it is put together
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+src/
+  services/nutritionService.ts   the AI seam - analyzeMeal()
+  services/foodDatabase.ts       the mock's food table
+  state/AppProvider.tsx          one reducer + context, persisted to localStorage
+  lib/nutrition.ts               all derivations (totals, progress, averages)
+  lib/seed.ts                    ~3 months of realistic sample data
+  components/                    ui primitives, dashboard, chat, trends, profile
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Totals are always derived from the food items of a meal - nothing stores a separate
+calorie figure - so adding, editing or deleting a meal updates every view at once.
 
-## Deploy on Vercel
+## Connecting a real backend
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+`src/services/nutritionService.ts` defines the whole contract:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```ts
+interface NutritionService {
+  analyzeMeal(request: AnalyzeMealRequest): Promise<AnalyzeMealResponse>;
+}
+```
+
+Two implementations ship with it:
+
+- `createMockNutritionService()` - parses the description locally, with realistic
+  latency, a small simulated failure rate and typed `NutritionAnalysisError` codes.
+- `createHttpNutritionService(endpoint)` - posts the same request to
+  `POST /api/nutrition/analyze` and validates the response shape.
+
+The exported `nutritionService` picks the HTTP one when
+`NEXT_PUBLIC_NUTRITION_API_URL` is set, so swapping in a real endpoint needs no UI
+changes. Any model provider credentials belong on that server route - nothing secret
+is ever read in the browser.
+
+## Notes
+
+- Nutrition figures from the AI log are estimates and are labelled as such; every
+  meal stays editable.
+- Suggested goals come from a standard energy formula and are presented as a
+  starting point, not medical or dietary advice.
+- Data can be wiped and re-seeded from **Profile → Reset demo data**.

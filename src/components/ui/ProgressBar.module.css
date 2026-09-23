@@ -1,0 +1,39 @@
+.wrap {
+  position: relative;
+  width: 100%;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--track);
+  overflow: hidden;
+}
+
+.thick {
+  height: 12px;
+}
+
+.fill {
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: var(--bar-color, var(--brand));
+  transition: width 420ms var(--ease), background var(--duration) var(--ease);
+  min-width: 0;
+}
+
+/* The slice past 100% sits on the same track, separated by a surface gap. */
+.overflow {
+  position: absolute;
+  inset: 0 0 0 auto;
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: var(--over);
+  box-shadow: -2px 0 0 0 var(--surface);
+  transition: width 420ms var(--ease);
+}
+
+.markerLabel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--border-strong);
+}

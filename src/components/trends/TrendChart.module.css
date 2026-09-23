@@ -1,0 +1,114 @@
+.wrap {
+  position: relative;
+  width: 100%;
+}
+
+.svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+.grid {
+  stroke: var(--grid);
+  stroke-width: 1;
+}
+
+.axisLabel {
+  fill: var(--text-3);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+.bar {
+  transition: opacity var(--duration) var(--ease);
+}
+
+.barMuted {
+  opacity: 0.35;
+}
+
+.targetLine {
+  stroke: var(--text-3);
+  stroke-width: 1.5;
+  stroke-dasharray: 5 4;
+}
+
+.targetLabel {
+  fill: var(--text-2);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.line {
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.marker {
+  stroke: var(--surface);
+  stroke-width: 2;
+}
+
+.hit {
+  fill: transparent;
+  cursor: crosshair;
+}
+
+.tooltip {
+  position: absolute;
+  z-index: 5;
+  transform: translate(-50%, -100%);
+  pointer-events: none;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-2);
+  padding: 7px 10px;
+  font-size: 0.78rem;
+  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.tooltipDate {
+  color: var(--text-3);
+  font-size: 0.7rem;
+}
+
+.tooltipValue {
+  font-weight: 640;
+  font-variant-numeric: tabular-nums;
+}
+
+.legend {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+  font-size: 0.78rem;
+  color: var(--text-2);
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.legendSwatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  background: var(--swatch, var(--brand));
+}
+
+.legendDash {
+  width: 14px;
+  height: 0;
+  border-top: 2px dashed var(--text-3);
+}

@@ -1,0 +1,84 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.title {
+  font-size: 1.6rem;
+  letter-spacing: -0.03em;
+}
+
+.subtitle {
+  font-size: 0.88rem;
+  color: var(--text-2);
+  margin-top: 3px;
+}
+
+.chartHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.chartTitle {
+  font-size: 1rem;
+  font-weight: 640;
+}
+
+.chartNote {
+  font-size: 0.8rem;
+  color: var(--text-3);
+}
+
+.weightHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.weightProgress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.92rem;
+}
+
+.weightValue {
+  font-size: 1.3rem;
+  font-weight: 670;
+  letter-spacing: -0.02em;
+}
+
+.arrow {
+  color: var(--text-3);
+}
+
+.delta {
+  font-size: 0.8rem;
+  color: var(--text-3);
+}
+
+@media (max-width: 640px) {
+  .title {
+    font-size: 1.35rem;
+  }
+  .header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

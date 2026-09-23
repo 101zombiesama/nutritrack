@@ -1,0 +1,42 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: var(--radius-pill);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  background: var(--surface-muted);
+  color: var(--text-2);
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.brand {
+  background: var(--brand-soft);
+  color: var(--brand);
+}
+
+.warning {
+  background: var(--warning-soft);
+  color: var(--warning);
+}
+
+.over {
+  background: var(--over-soft);
+  color: var(--over);
+}
+
+.outline {
+  background: transparent;
+  border-color: var(--border-strong);
+  color: var(--text-2);
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}

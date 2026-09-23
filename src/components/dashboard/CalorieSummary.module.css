@@ -1,0 +1,159 @@
+.card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 28px;
+  align-items: center;
+}
+
+.ringWrap {
+  position: relative;
+  width: 188px;
+  height: 188px;
+  flex: none;
+}
+
+.ring {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.track {
+  stroke: var(--track);
+}
+
+.progress {
+  stroke: var(--brand);
+  transition: stroke-dashoffset 600ms var(--ease), stroke var(--duration) var(--ease);
+}
+
+.over {
+  stroke: var(--over);
+}
+
+.center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  text-align: center;
+}
+
+.bigNumber {
+  font-size: 2.35rem;
+  font-weight: 680;
+  letter-spacing: -0.035em;
+  line-height: 1;
+}
+
+.bigLabel {
+  font-size: 0.76rem;
+  color: var(--text-3);
+  font-weight: 560;
+}
+
+.statusPill {
+  margin-top: 6px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  background: var(--surface-inset);
+  border: 1px solid var(--border);
+}
+
+.statLabel {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-3);
+  font-weight: 620;
+}
+
+.statValue {
+  font-size: 1.32rem;
+  font-weight: 660;
+  letter-spacing: -0.02em;
+}
+
+.statUnit {
+  font-size: 0.78rem;
+  color: var(--text-3);
+  font-weight: 540;
+  margin-left: 3px;
+}
+
+.remainingOver .statValue {
+  color: var(--over);
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.meta {
+  font-size: 0.82rem;
+  color: var(--text-3);
+}
+
+@media (max-width: 860px) {
+  .card {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 20px;
+  }
+  .stats {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .ringWrap {
+    width: 164px;
+    height: 164px;
+  }
+  .stats {
+    grid-template-columns: 1fr;
+  }
+  .stat {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 10px 14px;
+  }
+}
+
+.logLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--brand);
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--brand-soft);
+  transition: background var(--duration) var(--ease);
+}
+
+.logLink:hover {
+  background: color-mix(in srgb, var(--brand-soft) 70%, var(--brand) 12%);
+}
