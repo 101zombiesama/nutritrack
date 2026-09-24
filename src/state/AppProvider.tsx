@@ -11,7 +11,6 @@ import {
 } from "react";
 import { createId } from "@/lib/id";
 import { todayISO } from "@/lib/dates";
-import { withoutId, withPatch } from "@/lib/collections";
 import { loadData, saveData, clearData, writeStoredTheme } from "@/lib/storage";
 import { createSeedData } from "@/lib/seed";
 import type {
@@ -56,9 +55,12 @@ function dataReducer(state: AppData, action: Action): AppData {
     case "addMeal":
       return { ...state, meals: [...state.meals, action.meal], demo: false };
     case "updateMeal":
-      return { ...state, meals: withPatch(state.meals, action.meal.id, action.meal) };
+      return {
+        ...state,
+        meals: state.meals.map((meal) => (meal.id === action.meal.id ? action.meal : meal)),
+      };
     case "deleteMeal":
-      return { ...state, meals: withoutId(state.meals, action.id) };
+      return { ...state, meals: state.meals.filter((meal) => meal.id !== action.id) };
     case "setGoals":
       return { ...state, goals: action.goals };
     case "setProfile":
@@ -79,13 +81,18 @@ function dataReducer(state: AppData, action: Action): AppData {
       };
     }
     case "deleteWeight":
-      return { ...state, weights: withoutId(state.weights, action.id) };
+      return { ...state, weights: state.weights.filter((entry) => entry.id !== action.id) };
     case "appendMessage":
       return { ...state, chat: [...state.chat, action.message] };
     case "updateMessage":
-      return { ...state, chat: withPatch(state.chat, action.id, action.patch) };
+      return {
+        ...state,
+        chat: state.chat.map((message) =>
+          message.id === action.id ? { ...message, ...action.patch } : message,
+        ),
+      };
     case "removeMessage":
-      return { ...state, chat: withoutId(state.chat, action.id) };
+      return { ...state, chat: state.chat.filter((message) => message.id !== action.id) };
     case "resetChat":
       return { ...state, chat: [action.message] };
     default:

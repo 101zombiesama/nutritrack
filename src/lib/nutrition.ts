@@ -1,4 +1,3 @@
-import { memoizeByRef } from "./memo";
 import type {
   ActivityLevel,
   DailyNutritionSummary,
@@ -79,10 +78,7 @@ export function groupMealsByType(meals: Meal[]): Record<MealType, Meal[]> {
   return grouped;
 }
 
-export const dailySummary = memoizeByRef(function dailySummary(
-  meals: Meal[],
-  date: string,
-): DailyNutritionSummary {
+export function dailySummary(meals: Meal[], date: string): DailyNutritionSummary {
   const dayMeals = mealsForDate(meals, date);
   return {
     date,
@@ -90,28 +86,25 @@ export const dailySummary = memoizeByRef(function dailySummary(
     mealCount: dayMeals.length,
     hasData: dayMeals.length > 0,
   };
-});
+}
 
-export const dailySummaries = memoizeByRef(
-  function dailySummaries(meals: Meal[], dates: string[]): DailyNutritionSummary[] {
-    const byDate = new Map<string, Meal[]>();
-    for (const meal of meals) {
-      const list = byDate.get(meal.date);
-      if (list) list.push(meal);
-      else byDate.set(meal.date, [meal]);
-    }
-    return dates.map((date) => {
-      const dayMeals = byDate.get(date) ?? [];
-      return {
-        date,
-        totals: totalsForMeals(dayMeals),
-        mealCount: dayMeals.length,
-        hasData: dayMeals.length > 0,
-      };
-    });
-  },
-  (dates) => dates.join(","),
-);
+export function dailySummaries(meals: Meal[], dates: string[]): DailyNutritionSummary[] {
+  const byDate = new Map<string, Meal[]>();
+  for (const meal of meals) {
+    const list = byDate.get(meal.date);
+    if (list) list.push(meal);
+    else byDate.set(meal.date, [meal]);
+  }
+  return dates.map((date) => {
+    const dayMeals = byDate.get(date) ?? [];
+    return {
+      date,
+      totals: totalsForMeals(dayMeals),
+      mealCount: dayMeals.length,
+      hasData: dayMeals.length > 0,
+    };
+  });
+}
 
 export type ProgressState = "empty" | "under" | "near" | "met" | "over";
 
