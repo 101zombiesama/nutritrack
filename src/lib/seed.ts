@@ -148,6 +148,8 @@ export function createSeedData(): AppData {
 
   return {
     version: 1,
+    demo: true,
+    seededOn: todayISO(),
     profile: {
       name: "Alex",
       age: 31,

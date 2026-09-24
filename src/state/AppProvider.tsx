@@ -54,7 +54,7 @@ function dataReducer(state: AppData, action: Action): AppData {
     case "reset":
       return action.data;
     case "addMeal":
-      return { ...state, meals: [...state.meals, action.meal] };
+      return { ...state, meals: [...state.meals, action.meal], demo: false };
     case "updateMeal":
       return { ...state, meals: withPatch(state.meals, action.meal.id, action.meal) };
     case "deleteMeal":
@@ -72,7 +72,11 @@ function dataReducer(state: AppData, action: Action): AppData {
             entry.date === action.entry.date ? { ...entry, weightKg: action.entry.weightKg } : entry,
           )
         : [...state.weights, action.entry];
-      return { ...state, weights: weights.sort((a, b) => a.date.localeCompare(b.date)) };
+      return {
+        ...state,
+        weights: weights.sort((a, b) => a.date.localeCompare(b.date)),
+        demo: false,
+      };
     }
     case "deleteWeight":
       return { ...state, weights: withoutId(state.weights, action.id) };

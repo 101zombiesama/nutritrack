@@ -128,4 +128,8 @@ export interface AppData {
   weights: WeightEntry[];
   chat: ChatMessage[];
   preferences: Preferences;
+  /** True while the data is the generated demo and nothing real has been logged. */
+  demo?: boolean;
+  /** Day the demo was generated; a demo from an earlier day is refreshed on load. */
+  seededOn?: string;
 }
